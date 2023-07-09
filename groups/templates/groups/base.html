@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>YouTube Coding Video Favs</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link href="{% static 'custom.css' %}" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}" />
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/">
+  <link href="//db.onlinewebfonts.com/c/261506be3344b3806eefa054f0f6fbf1?family=Tempus+Sans+ITC" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 shadow-sm" id="navbar">
+    <div class="my-0 mr-md-auto"><a href="{% url 'home' %}">
+      <img src="{% static 'logo.png' %}" class="d-inline-block align-top" height='55' width='94%' />
+    </a></div>
+    <nav class="my-2 my-md-0 mr-md-3">
+      {% if user.is_authenticated %}
+      <a class="p-2 text-white" href="{% url 'dashboard' %}">My Dashboard</a>
+      <a class="p-2 text-white" href="{% url 'logout' %}">Log Out</a>
+      {% else %}
+      <a class="p-2 text-white" href="{% url 'login' %}">Log In</a>
+      {% endif %}
+    </nav>
+    {% if user.is_authenticated == False %}
+    <a class="btn btn-outline-primary" href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  {% block content %}
+  {% endblock %}
+
+  <footer class="footer">
+      <div class="container text-center text-muted">
+        <p><small>Created by <a href="https://devpatrol1.github.io/" target="_blank">Patricia Rollins</a> | © {% now 'Y' %} - All Righs Reserved</small></p>
+      </div>
+  </footer>
+
+</body>
+
+</html>
